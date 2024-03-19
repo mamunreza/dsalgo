@@ -1,17 +1,4 @@
 
-// let mls = {
-//   head: {
-//     value: 2,
-//     next: {
-//       value: 3,
-//       next: {
-//         value: 16,
-//         next: null
-//       }
-//     }
-//   }
-// }
-
 class Node {
   constructor(value){
     this.value = value;
@@ -93,6 +80,25 @@ class LinkedList {
     this.length--;
     return this.printList();
   }
+
+  reverse(){
+    if(!this.head.next) {
+      return this.head;
+    }
+
+    let first = this.head;
+    //this.tail = 
+    let second = first.next;
+    while(second){
+      const temp = second.next;
+      second.next = first;
+      first = second;
+      second = temp;
+    }
+    this.head.next = null;
+    this.head = first;
+    return this;
+  }
 }
 
 const myLinkedList = new LinkedList(22);
@@ -102,9 +108,11 @@ myLinkedList.append(6)
 myLinkedList.append(43)
 myLinkedList.append(76)
 myLinkedList.append(89)
+// console.log(myLinkedList.printList())
+// myLinkedList.insert(3, 87)
+// console.log(myLinkedList.printList())
+// myLinkedList.remove(5)
 console.log(myLinkedList.printList())
-myLinkedList.insert(3, 87)
-console.log(myLinkedList.printList())
-myLinkedList.remove(5)
+myLinkedList.reverse();
 console.log(myLinkedList.printList())
 // console.log(myLinkedList)
